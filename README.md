@@ -35,7 +35,7 @@ Where:
 7. create a skeleton `README.md` with nice badges
 8. create a lib subdirectory with a main js file named after the project
 9. create a bin subdirectory if the `+bin` flag has been used
-10. create a Gruntfile that will export source coverage reports to [Coveralls](https://coveralls.io/) when executed on Travis CI
+10. create a Gruntfile that will export source coverage reports to [Coveralls](https://coveralls.io/) when executed on [Travis CI](https://travis-ci.org/)
 11. Initialize git and point it to `https://jaubourg@github.com/jaubourg/superpack.git`
 12. NPM-install the dev dependencies
 
