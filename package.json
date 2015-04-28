@@ -1,6 +1,6 @@
 {
 	"name": "nodehub",
-	"version": "0.1.0-pre",
+	"version": "0.0.1",
 	"author": "Julian Aubourg <j@ubourg.net> (http://jaubourg.net)",
 	"description": "jaubourg's simple node/github project init.",
 	"main": "./lib/nodehub.js",
