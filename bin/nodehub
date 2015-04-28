@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+"use strict";
+
+require( "../lib/nodehub" )( process.cwd(), process.argv, console );
