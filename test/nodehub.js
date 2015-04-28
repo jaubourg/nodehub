@@ -1,27 +1,14 @@
 "use strict";
 
-var cashe = require( "cashe" );
-var fs = require( "fs" );
-var path = require( "path" );
-var wrench = require( "wrench" );
-
-var rmdirAtExit = cashe( function( dir ) {
-	process.on( "exit", function() {
-		wrench.rmdirSyncRecursive( __dirname + "/" + dir );
-	} );
-} );
-
 var nodehub = require( "../lib/nodehub" );
 
-var silentConsole = {
-	log: function() {},
-	error: function() {}
-};
+var dir = require( "./util/dir" );
+var fs = require( "fs" );
+var silentConsole = require( "./util/silentConsole" );
 
 function binGlobalTests( bin, global ) {
 	var dirname = ( bin ? "" : "no_" ) + "bin_" + ( global ? "" : "no_" ) + "global";
 	return function( __ ) {
-		rmdirAtExit( dirname );
 		__.expect( 12 );
 		var argv = [ 1, 2, dirname ];
 		if ( bin ) {
@@ -43,9 +30,10 @@ function binGlobalTests( bin, global ) {
 				}
 			} )
 			.failure( function() {
-				__.ok( false, "unexpected error" );
+				__.ok( false, "unexpected error: " + [].slice.call( arguments ) );
 			} )
 			.always( function() {
+				dir.remove( __dirname, dirname );
 				__.done();
 			} );
 	};
@@ -56,7 +44,7 @@ module.exports = {
 		__.expect( 1 );
 		nodehub( __dirname, [], silentConsole )
 			.success( function() {
-				__.ok( false, "unexpected success" );
+				__.ok( false, "unexpected success: " + [].slice.call( arguments ) );
 			} )
 			.failure( function( error ) {
 				__.ok( /^Usage:/.test( error ), "wrong usage" );
@@ -67,17 +55,16 @@ module.exports = {
 	},
 	"dir exists": function( __ ) {
 		__.expect( 1 );
-		var dirname = path.resolve( __dirname, "exists" );
-		wrench.mkdirSyncRecursive( dirname );
-		rmdirAtExit( "exists" );
+		var dirname = dir.create( __dirname, "exists" );
 		nodehub( __dirname, [ 1, 2, "exists" ], silentConsole )
 			.success( function() {
-				__.ok( false, "unexpected success" );
+				__.ok( false, "unexpected success: " + [].slice.call( arguments ) );
 			} )
 			.failure( function( error ) {
 				__.strictEqual( error, dirname + " already exists!", "detected" );
 			} )
 			.always( function() {
+				dir.remove( dirname );
 				__.done();
 			} );
 	},
