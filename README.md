@@ -26,22 +26,18 @@ Where:
 
 `nodehub superpack` will:
 
-1. create a subdirectory called `superpack`
-2. check for your git username using the git command (in my case `jaubourg`)
-3. get your info from [GitHub](https://github.com/) (email, web page)
-4. create a file structure with:
-  + configuration for:
-    - [JSCS](http://jscs.info/)
-    - [JSHint](http://jshint.com/)
-    - [Travis CI](https://travis-ci.org/)
-  + the text of the MIT license with proper copyright
-  + a properly filled `package.json` file
-  + a skeleton `README.md` with nice badges
-  + a lib subdirectory with a main js file named after the project
-  + same with a bin subdirectory is the `+bin` flag has been used
-  + a Gruntfile that will export source coverage reports to [Coveralls](https://coveralls.io/) when execute on Travis CI
-5. Initialize git and point it to `https://jaubourg@github.com/jaubourg/superpack.git`
-6. NPM-install the dev dependencies
+1. check for your git username using the git command (in my case `jaubourg`)
+2. get your info from [GitHub](https://github.com/) (email, web page)
+3. create a subdirectory called `superpack`.
+4. create configuration for [JSCS](http://jscs.info/), [JSHint](http://jshint.com/) and [Travis CI](https://travis-ci.org/)
+5. add the text of the MIT license with proper copyright
+6. create a properly filled `package.json` file
+7. create a skeleton `README.md` with nice badges
+8. create a lib subdirectory with a main js file named after the project
+9. create a bin subdirectory if the `+bin` flag has been used
+10. create a Gruntfile that will export source coverage reports to [Coveralls](https://coveralls.io/) when executed on Travis CI
+11. Initialize git and point it to `https://jaubourg@github.com/jaubourg/superpack.git`
+12. NPM-install the dev dependencies
 
 You just have to code from there!
 
